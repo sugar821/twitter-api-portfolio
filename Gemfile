@@ -36,6 +36,9 @@ gem 'devise'
 gem 'bootstrap'
 #bootstrap4
 
+gem 'font-awesome-sass', '~> 5.4.1'
+#font-awesome
+
 gem 'kaminari'
 #ページネーション追加
 
