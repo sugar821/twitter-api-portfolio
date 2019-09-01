@@ -1,16 +1,10 @@
 h1 twitterハッシュタグ検索
+h3 空白だと検索結果を返さないけど、バリデーションではじくようにしよう
 
 div#search-box
 = form_tag('/tweets/search', method: :get) do
     = text_field_tag :tweet, nil,  name: "keyword", id: "tweet_search", placeholder: "keyword"
     = button_tag "go", type: :submit
-/    = link_to "sample_button_to_root",root_path, class: "btn btn-outline-danger float-right mt-2" 
-/= form_for @tweet do |f|
-    .field
-        = f.label :tweet
-        = f.text_field :tweet, class: "form-control",placeholder: "タイトルを入力して下さい", autofocus: true
-    .actions = f.submit nil , class: "form-control btn btn-outline-primary mt-2"
-
 div#tweet_list
     - if @tweets.present?
           h2 検索結果
@@ -20,7 +14,7 @@ div#tweet_list
                 thead.alert-success
                   tr.text-center
                     th = "No"
-                    th = "content"
+                    th = "contents"
                     th = "favorite"
                     th = "comment"
                 tbody
@@ -28,6 +22,8 @@ div#tweet_list
                         tr.text-center
                         td = i
                         td = tweet.contents
-                        td = "dummy"
+                        td = link_to 'favorite', new_tweet_path
                         td = link_to icon("fas", "pen") , root_path
-          
+    - else
+        h3 そのハッシュタグは存在しません    
+        

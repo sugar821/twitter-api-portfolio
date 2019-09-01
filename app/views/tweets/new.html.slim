@@ -1,5 +1,12 @@
 h1 New tweet
 
-== render 'form'
+/== render 'form'
 
+= form_for @tweet do |f|
+  .field
+    = f.label :favorite
+    = f.check_box :favorite
+  .actions = f.submit
+
+= @hoge
 = link_to 'Back', tweets_path

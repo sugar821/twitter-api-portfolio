@@ -10,13 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_30_120721) do
+ActiveRecord::Schema.define(version: 2019_08_31_173501) do
 
-  create_table "tweets", force: :cascade do |t|
-    t.boolean "favorite"
+  create_table "reviews", force: :cascade do |t|
+    t.string "title", null: false
+    t.text "body", null: false
+    t.integer "tweet_id"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["tweet_id", "user_id"], name: "index_reviews_on_tweet_id_and_user_id", unique: true
+    t.index ["tweet_id"], name: "index_reviews_on_tweet_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
+
+# Could not dump table "tweets" because of following StandardError
+#   Unknown type 'reference' for column 'uid'
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
