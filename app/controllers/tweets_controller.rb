@@ -17,6 +17,13 @@ class TweetsController < ApplicationController
       # 取得したツイートをモデルに渡す
       tweets.take(10).each do |tw|
         tweet = Tweet.new(tw.full_text)
+        
+        logger.debug("-------------------")
+        logger.debug("名前/中身")
+        logger.debug(tw.user.name)
+        logger.debug(tw.full_text)
+        logger.debug("-------------------")
+        
         @tweets << tweet
       end
     end

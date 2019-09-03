@@ -1,6 +1,4 @@
 h1 twitterハッシュタグ検索
-h3 空白だと検索結果を返さないけど、バリデーションではじくようにしよう
-
 div#search-box
 = form_tag('/tweets/search', method: :get) do
     = text_field_tag :tweet, nil,  name: "keyword", id: "tweet_search", placeholder: "keyword"
@@ -10,7 +8,7 @@ div#tweet_list
           h2 検索結果
           div.list
           div.col-12.table-responsive
-              table class="table table-hover table-sm mytable"
+           table class="table table-hover table-sm mytable"
                 thead.alert-success
                   tr.text-center
                     th = "No"
@@ -20,8 +18,8 @@ div#tweet_list
                 tbody
                     - @tweets.each_with_index do |tweet, i|
                         tr.text-center
-                        td = i
-                        td = tweet.contents
+                        td = tweet.full_text
+                        td = tweet.user_name
                         td = link_to 'favorite', new_tweet_path
                         td = link_to icon("fas", "pen") , root_path
     - else
